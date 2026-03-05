@@ -1,0 +1,2042 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiệp 8/3 ✨</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --rose: #c8436a;
+        --blush: #f4a7b9;
+        --cream: #fff8f0;
+        --gold: #d4a855;
+        --deep: #2a0a14;
+        --leaf: #6db56d;
+        --W: min(420px, 96vw);
+        --H: min(680px, 94vh);
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #0a0110;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      #bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* ── falling things ── */
+      .drop {
+        position: fixed;
+        pointer-events: none;
+        opacity: 0;
+        z-index: 1;
+        animation: dropfall linear infinite;
+      }
+      @keyframes dropfall {
+        0% {
+          opacity: 0;
+          transform: translateY(-40px) rotate(0deg) scale(0.7);
+        }
+        8% {
+          opacity: 1;
+        }
+        88% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(108vh) rotate(540deg) scale(1.1);
+        }
+      }
+
+      #scene {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ══ PAGE 1 ══ */
+      #p1 {
+        width: var(--W);
+        height: var(--H);
+        position: absolute;
+        background: linear-gradient(
+          148deg,
+          #310d1e 0%,
+          #160310 50%,
+          #2b0d1a 100%
+        );
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(212, 168, 85, 0.25),
+          0 28px 80px rgba(200, 67, 106, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: breathe1 4s ease-in-out infinite;
+        transition:
+          transform 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+          opacity 0.9s;
+        z-index: 10;
+      }
+      #p1.gone {
+        transform: translateX(-120%) rotate(-7deg);
+        opacity: 0;
+        pointer-events: none;
+      }
+      @keyframes breathe1 {
+        0%,
+        100% {
+          box-shadow:
+            0 0 0 1px rgba(212, 168, 85, 0.25),
+            0 28px 80px rgba(200, 67, 106, 0.5);
+        }
+        50% {
+          box-shadow:
+            0 0 0 1px rgba(212, 168, 85, 0.45),
+            0 36px 110px rgba(200, 67, 106, 0.7),
+            0 0 80px rgba(200, 67, 106, 0.2);
+        }
+      }
+      #p1::before {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        border: 1.5px solid rgba(212, 168, 85, 0.32);
+        border-radius: 22px;
+        pointer-events: none;
+        z-index: 1;
+      }
+      #p1::after {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border: 1px solid rgba(212, 168, 85, 0.12);
+        border-radius: 17px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(72px);
+        pointer-events: none;
+      }
+      .o1 {
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(
+          circle,
+          rgba(200, 67, 106, 0.52),
+          transparent 68%
+        );
+        top: -90px;
+        left: -80px;
+        animation: od1 9s ease-in-out infinite;
+      }
+      .o2 {
+        width: 270px;
+        height: 270px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 168, 85, 0.22),
+          transparent 68%
+        );
+        bottom: -70px;
+        right: -70px;
+        animation: od2 12s ease-in-out infinite;
+      }
+      .o3 {
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(
+          circle,
+          rgba(247, 168, 184, 0.28),
+          transparent 68%
+        );
+        top: 48%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+        animation: od1 7s ease-in-out infinite reverse;
+      }
+      @keyframes od1 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(22px, 16px);
+        }
+      }
+      @keyframes od2 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-16px, -22px);
+        }
+      }
+
+      /* SVG corner */
+      .crnr {
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .crnr.tl {
+        top: 0;
+        left: 0;
+      }
+      .crnr.tr {
+        top: 0;
+        right: 0;
+        transform: scaleX(-1);
+      }
+      .crnr.bl {
+        bottom: 0;
+        left: 0;
+        transform: scaleY(-1);
+      }
+      .crnr.br {
+        bottom: 0;
+        right: 0;
+        transform: scale(-1, -1);
+      }
+
+      /* sparkle rings */
+      .stk {
+        position: absolute;
+        z-index: 3;
+        pointer-events: none;
+        animation: twinkle ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0.3) rotate(0deg);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2) rotate(25deg);
+        }
+      }
+
+      /* floating hearts p1 */
+      .fh {
+        position: absolute;
+        pointer-events: none;
+        z-index: 2;
+        animation: fhup ease-in-out infinite;
+      }
+      @keyframes fhup {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0.4);
+        }
+        18% {
+          opacity: 1;
+        }
+        82% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-80px) scale(1.1);
+        }
+      }
+
+      .p1-rose {
+        width: 152px;
+        height: 152px;
+        position: relative;
+        z-index: 3;
+        filter: drop-shadow(0 6px 32px rgba(200, 67, 106, 0.9))
+          drop-shadow(0 0 22px rgba(212, 168, 85, 0.4));
+        animation: rsway 5s ease-in-out infinite;
+        margin-bottom: 2px;
+      }
+      @keyframes rsway {
+        0%,
+        100% {
+          transform: rotate(-3deg) scale(1);
+        }
+        50% {
+          transform: rotate(3deg) scale(1.06);
+        }
+      }
+
+      .p1-date {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 3px;
+        line-height: 1;
+        position: relative;
+        z-index: 3;
+        animation: gdate 3s ease-in-out infinite;
+      }
+      @keyframes gdate {
+        0%,
+        100% {
+          text-shadow: 0 0 28px rgba(212, 168, 85, 0.6);
+        }
+        50% {
+          text-shadow:
+            0 0 70px rgba(212, 168, 85, 1),
+            0 0 120px rgba(212, 168, 85, 0.4);
+        }
+      }
+
+      .p1-sub {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.35rem;
+        color: var(--blush);
+        position: relative;
+        z-index: 3;
+        margin-top: 4px;
+        text-shadow: 0 2px 18px rgba(200, 67, 106, 0.5);
+      }
+
+      .p1-divrow {
+        position: relative;
+        z-index: 3;
+        width: 190px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        margin: 11px 0;
+      }
+      .p1-divrow::before,
+      .p1-divrow::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .p1-divrow .di {
+        color: var(--gold);
+        font-size: 0.75rem;
+        animation: twinkle 1.6s ease-in-out infinite;
+      }
+      .p1-divrow .di:nth-child(2) {
+        animation-delay: 0.2s;
+        font-size: 0.95rem;
+      }
+      .p1-divrow .di:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      .p1-to {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        color: rgba(244, 167, 185, 0.55);
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 3;
+      }
+      .p1-name {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        font-style: italic;
+        color: var(--cream);
+        position: relative;
+        z-index: 3;
+        margin-top: 3px;
+        text-align: center;
+        text-shadow:
+          0 0 24px rgba(255, 255, 255, 0.22),
+          0 0 50px rgba(212, 168, 85, 0.18);
+      }
+
+      .p1-hrow {
+        display: flex;
+        gap: 5px;
+        position: relative;
+        z-index: 3;
+        margin-top: 6px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 220px;
+      }
+      .ph1 {
+        animation: hb1 1.35s ease-in-out infinite;
+      }
+      .ph1:nth-child(1) {
+        font-size: 0.95rem;
+        animation-delay: 0s;
+      }
+      .ph1:nth-child(2) {
+        font-size: 1.25rem;
+        animation-delay: 0.12s;
+      }
+      .ph1:nth-child(3) {
+        font-size: 0.95rem;
+        animation-delay: 0.24s;
+      }
+      .ph1:nth-child(4) {
+        font-size: 1.1rem;
+        animation-delay: 0.06s;
+      }
+      .ph1:nth-child(5) {
+        font-size: 0.85rem;
+        animation-delay: 0.18s;
+      }
+      .ph1:nth-child(6) {
+        font-size: 1.25rem;
+        animation-delay: 0.3s;
+      }
+      .ph1:nth-child(7) {
+        font-size: 0.95rem;
+        animation-delay: 0.09s;
+      }
+      .ph1:nth-child(8) {
+        font-size: 0.85rem;
+        animation-delay: 0.21s;
+      }
+      .ph1:nth-child(9) {
+        font-size: 1.1rem;
+        animation-delay: 0.15s;
+      }
+      @keyframes hb1 {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.38);
+        }
+      }
+
+      /* slider */
+      .slider-wrap {
+        position: relative;
+        z-index: 3;
+        margin-top: 18px;
+        width: 240px;
+        height: 52px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(212, 168, 85, 0.35);
+        border-radius: 30px;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .slider-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(200, 67, 106, 0.38),
+          rgba(200, 67, 106, 0.15)
+        );
+        border-radius: 30px;
+        width: 52px;
+        pointer-events: none;
+        transition: width 0.04s;
+      }
+      .slider-lbl {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(244, 167, 185, 0.55);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .arr-wrap {
+        display: inline-flex;
+        gap: 1px;
+        margin-right: 5px;
+      }
+      .arr {
+        opacity: 0;
+        animation: arrflow 0.9s ease-in-out infinite;
+        color: var(--gold);
+        font-style: normal;
+      }
+      .arr:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .arr:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .arr:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes arrflow {
+        0%,
+        100% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .slider-thumb {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e0506e, #7a1530);
+        box-shadow:
+          0 4px 22px rgba(200, 67, 106, 0.75),
+          0 0 10px rgba(212, 168, 85, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        cursor: grab;
+        touch-action: none;
+        transition: box-shadow 0.3s;
+      }
+      .slider-thumb:active {
+        cursor: grabbing;
+      }
+      .slider-thumb.snap {
+        left: calc(240px - 44px - 4px) !important;
+        transition: left 0.2s ease;
+      }
+
+      /* ══ PAGE 2 ══ */
+      #p2 {
+        width: var(--W);
+        height: var(--H);
+        position: absolute;
+        background: linear-gradient(
+          158deg,
+          #fff9f3 0%,
+          #ffe6ef 38%,
+          #fcc8dc 78%,
+          #ffb8cc 100%
+        );
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow:
+          0 28px 80px rgba(200, 67, 106, 0.38),
+          0 0 0 1px rgba(212, 168, 85, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: translateX(118%) rotate(5deg);
+        opacity: 0;
+        transition:
+          transform 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+          opacity 0.9s;
+        pointer-events: none;
+        z-index: 9;
+      }
+      #p2.enter {
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .p2-ribbon {
+        flex-shrink: 0;
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(
+          90deg,
+          #c8436a,
+          #d4a855,
+          #f4a7b9,
+          #fff,
+          #f4a7b9,
+          #d4a855,
+          #c8436a
+        );
+        background-size: 250% 100%;
+        animation: ribshine 2.5s linear infinite;
+      }
+      @keyframes ribshine {
+        to {
+          background-position: 250% 0;
+        }
+      }
+
+      .p2-wm {
+        position: absolute;
+        font-size: 19rem;
+        opacity: 0.04;
+        right: -40px;
+        bottom: -30px;
+        pointer-events: none;
+        line-height: 1;
+        animation: wmdrift 14s ease-in-out infinite;
+      }
+      @keyframes wmdrift {
+        0%,
+        100% {
+          transform: rotate(-4deg);
+        }
+        50% {
+          transform: rotate(4deg);
+        }
+      }
+
+      .p2-crnr {
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .p2-crnr.tl {
+        top: 0;
+        left: 0;
+      }
+      .p2-crnr.tr {
+        top: 0;
+        right: 0;
+        transform: scaleX(-1);
+      }
+      .p2-crnr.bl {
+        bottom: 130px;
+        left: 0;
+        transform: scaleY(-1);
+      }
+      .p2-crnr.br {
+        bottom: 130px;
+        right: 0;
+        transform: scale(-1, -1);
+      }
+
+      .fh2 {
+        position: absolute;
+        pointer-events: none;
+        z-index: 3;
+        animation: fh2up ease-in-out infinite;
+      }
+      @keyframes fh2up {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0.4);
+        }
+        18% {
+          opacity: 0.9;
+        }
+        82% {
+          opacity: 0.45;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-95px) scale(1.1) rotate(12deg);
+        }
+      }
+
+      .p2-back {
+        position: absolute;
+        top: 16px;
+        right: 18px;
+        padding: 6px 18px;
+        background: transparent;
+        color: var(--rose);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.85rem;
+        font-style: italic;
+        letter-spacing: 1.5px;
+        border: 1px solid rgba(200, 67, 106, 0.35);
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 10;
+      }
+      .p2-back:hover {
+        background: rgba(200, 67, 106, 0.1);
+      }
+
+      .p2-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 22px 0;
+        width: 100%;
+        padding-bottom: 152px;
+        overflow: hidden;
+        position: relative;
+        z-index: 4;
+      }
+
+      .p2-hrow {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        margin-bottom: 7px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 260px;
+      }
+      .phr {
+        animation: hbr 1.4s ease-in-out infinite;
+      }
+      .phr:nth-child(1) {
+        font-size: 0.95rem;
+      }
+      .phr:nth-child(2) {
+        font-size: 1.8rem;
+        animation-delay: 0.2s;
+      }
+      .phr:nth-child(3) {
+        font-size: 0.95rem;
+      }
+      .phr:nth-child(4) {
+        font-size: 0.85rem;
+        animation-delay: 0.1s;
+      }
+      .phr:nth-child(5) {
+        font-size: 1.5rem;
+        animation-delay: 0.3s;
+      }
+      .phr:nth-child(6) {
+        font-size: 0.85rem;
+      }
+      .phr:nth-child(7) {
+        font-size: 1rem;
+        animation-delay: 0.15s;
+      }
+      .phr:nth-child(8) {
+        font-size: 0.8rem;
+        animation-delay: 0.25s;
+      }
+      @keyframes hbr {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+      }
+
+      .p2-to {
+        font-family: "Dancing Script", cursive;
+        font-size: 1rem;
+        color: var(--rose);
+        letter-spacing: 1px;
+      }
+      .p2-name {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        font-style: italic;
+        color: var(--deep);
+        text-align: center;
+        margin: 3px 0 9px;
+        text-shadow: 1px 2px 0 rgba(200, 67, 106, 0.14);
+      }
+
+      .p2-divrow {
+        width: 88%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        margin-bottom: 11px;
+        flex-shrink: 0;
+      }
+      .p2-divrow::before,
+      .p2-divrow::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--rose),
+          var(--gold),
+          var(--rose),
+          transparent
+        );
+      }
+      .p2-divrow .di2 {
+        font-size: 0.75rem;
+        animation: twinkle 1.5s ease-in-out infinite;
+      }
+      .p2-divrow .di2:nth-child(2) {
+        animation-delay: 0.25s;
+        font-size: 0.9rem;
+      }
+      .p2-divrow .di2:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+
+      .p2-msg {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-style: italic;
+        color: #4a1a28;
+        text-align: center;
+        line-height: 1.95;
+        /* white-space: pre-wrap; */
+      }
+      .p2-msg b {
+        color: var(--rose);
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .p2-wish {
+        margin-top: 9px;
+        font-family: "Dancing Script", cursive;
+        font-size: 1.1rem;
+        color: var(--rose);
+        text-align: center;
+        line-height: 1.7;
+      }
+      .p2-from {
+        margin-top: 7px;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 0.82rem;
+        color: rgba(200, 67, 106, 0.5);
+        letter-spacing: 2px;
+      }
+
+      /* chars */
+      .p2-chars {
+        position: absolute;
+        bottom: 22px;
+        left: 0;
+        right: 0;
+        height: 148px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 0 6px 2px;
+        z-index: 5;
+        pointer-events: none;
+        background: linear-gradient(
+          to top,
+          rgba(252, 195, 215, 0.65) 0%,
+          transparent 100%
+        );
+      }
+      .char-fig {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .char-fig img {
+        width: auto;
+        object-fit: contain;
+        object-position: bottom center;
+        display: block;
+        filter: drop-shadow(0 5px 12px rgba(200, 67, 106, 0.4));
+      }
+      .char-placeholder {
+        font-size: 3.4rem;
+        line-height: 1;
+        filter: drop-shadow(0 4px 10px rgba(200, 67, 106, 0.4));
+      }
+      @keyframes sw1 {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-11px) rotate(2.5deg);
+        }
+      }
+      @keyframes sw2 {
+        0%,
+        100% {
+          transform: translateY(-5px) rotate(2deg);
+        }
+        50% {
+          transform: translateY(5px) rotate(-2deg);
+        }
+      }
+      @keyframes sw3 {
+        0%,
+        100% {
+          transform: translateY(0) rotate(2.5deg);
+        }
+        50% {
+          transform: translateY(-13px) rotate(-2deg);
+        }
+      }
+      @keyframes sw4 {
+        0%,
+        100% {
+          transform: translateY(-4px) rotate(-1.5deg);
+        }
+        50% {
+          transform: translateY(6px) rotate(2deg);
+        }
+      }
+      @keyframes sw5 {
+        0%,
+        100% {
+          transform: translateY(0) rotate(1.5deg);
+        }
+        50% {
+          transform: translateY(-9px) rotate(-2.5deg);
+        }
+      }
+      .char-fig:nth-child(1) img,
+      .char-fig:nth-child(1) .char-placeholder {
+        animation: sw1 3.8s ease-in-out infinite;
+      }
+      .char-fig:nth-child(2) img,
+      .char-fig:nth-child(2) .char-placeholder {
+        animation: sw2 4.4s ease-in-out infinite;
+      }
+      .char-fig:nth-child(3) img,
+      .char-fig:nth-child(3) .char-placeholder {
+        animation: sw3 3.2s ease-in-out infinite;
+      }
+      .char-fig:nth-child(4) img,
+      .char-fig:nth-child(4) .char-placeholder {
+        animation: sw4 5s ease-in-out infinite;
+      }
+      .char-fig:nth-child(5) img,
+      .char-fig:nth-child(5) .char-placeholder {
+        animation: sw5 3.6s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div id="scene">
+      <!-- ══ PAGE 1 ══ -->
+      <div id="p1">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
+
+        <!-- corner branches TL -->
+        <div class="crnr tl">
+          <svg width="115" height="115" viewBox="0 0 115 115" fill="none">
+            <path
+              d="M4 100 Q22 75 12 45 Q32 65 54 28 Q44 60 74 46 Q58 70 86 66 Q65 88 96 96"
+              stroke="#d4a855"
+              stroke-width="1.6"
+              fill="none"
+              opacity=".45"
+            />
+            <path
+              d="M4 100 Q18 82 26 60"
+              stroke="#6db56d"
+              stroke-width="1.3"
+              fill="none"
+              opacity=".5"
+            />
+            <path
+              d="M26 60 Q16 50 8 40"
+              stroke="#6db56d"
+              stroke-width="1.1"
+              fill="none"
+              opacity=".4"
+            />
+            <!-- leaves -->
+            <ellipse
+              cx="8"
+              cy="40"
+              rx="10"
+              ry="5.5"
+              fill="#6db56d"
+              opacity=".42"
+              transform="rotate(-35 8 40)"
+            />
+            <ellipse
+              cx="20"
+              cy="72"
+              rx="9"
+              ry="5"
+              fill="#6db56d"
+              opacity=".38"
+              transform="rotate(20 20 72)"
+            />
+            <!-- flowers -->
+            <circle cx="54" cy="28" r="6" fill="#c8436a" opacity=".82" />
+            <ellipse
+              cx="54"
+              cy="28"
+              rx="9"
+              ry="5.5"
+              fill="#c8436a"
+              opacity=".55"
+              transform="rotate(-35 54 28)"
+            />
+            <ellipse
+              cx="54"
+              cy="28"
+              rx="9"
+              ry="5.5"
+              fill="#f4a7b9"
+              opacity=".5"
+              transform="rotate(35 54 28)"
+            />
+            <circle cx="74" cy="46" r="5" fill="#e8759a" opacity=".8" />
+            <ellipse
+              cx="74"
+              cy="46"
+              rx="8"
+              ry="4.5"
+              fill="#e8759a"
+              opacity=".5"
+              transform="rotate(-50 74 46)"
+            />
+            <ellipse
+              cx="74"
+              cy="46"
+              rx="8"
+              ry="4.5"
+              fill="#c8436a"
+              opacity=".45"
+              transform="rotate(50 74 46)"
+            />
+            <circle cx="12" cy="45" r="4" fill="#f4a7b9" opacity=".7" />
+            <ellipse
+              cx="12"
+              cy="45"
+              rx="7"
+              ry="4"
+              fill="#f4a7b9"
+              opacity=".5"
+              transform="rotate(-20 12 45)"
+            />
+            <!-- sparkles -->
+            <text x="84" y="30" font-size="11" opacity=".75">✨</text>
+            <text x="8" y="62" font-size="10" opacity=".65">🌸</text>
+            <text x="38" y="95" font-size="9" opacity=".6">💛</text>
+          </svg>
+        </div>
+        <div class="crnr tr">
+          <svg width="115" height="115" viewBox="0 0 115 115" fill="none">
+            <path
+              d="M4 100 Q22 75 12 45 Q32 65 54 28 Q44 60 74 46 Q58 70 86 66 Q65 88 96 96"
+              stroke="#d4a855"
+              stroke-width="1.6"
+              fill="none"
+              opacity=".45"
+            />
+            <path
+              d="M4 100 Q18 82 26 60"
+              stroke="#6db56d"
+              stroke-width="1.3"
+              fill="none"
+              opacity=".5"
+            />
+            <ellipse
+              cx="8"
+              cy="40"
+              rx="10"
+              ry="5.5"
+              fill="#6db56d"
+              opacity=".4"
+              transform="rotate(-35 8 40)"
+            />
+            <ellipse
+              cx="20"
+              cy="72"
+              rx="9"
+              ry="5"
+              fill="#6db56d"
+              opacity=".36"
+              transform="rotate(20 20 72)"
+            />
+            <circle cx="54" cy="28" r="6" fill="#e8759a" opacity=".8" />
+            <ellipse
+              cx="54"
+              cy="28"
+              rx="9"
+              ry="5.5"
+              fill="#e8759a"
+              opacity=".55"
+              transform="rotate(-35 54 28)"
+            />
+            <ellipse
+              cx="54"
+              cy="28"
+              rx="9"
+              ry="5.5"
+              fill="#c8436a"
+              opacity=".48"
+              transform="rotate(35 54 28)"
+            />
+            <circle cx="74" cy="46" r="5" fill="#c8436a" opacity=".8" />
+            <ellipse
+              cx="74"
+              cy="46"
+              rx="8"
+              ry="4.5"
+              fill="#d45580"
+              opacity=".5"
+              transform="rotate(-50 74 46)"
+            />
+            <circle cx="12" cy="45" r="4" fill="#f4a7b9" opacity=".65" />
+            <text x="84" y="30" font-size="11" opacity=".7">💗</text>
+            <text x="8" y="62" font-size="10" opacity=".6">🌺</text>
+            <text x="38" y="95" font-size="9" opacity=".55">⭐</text>
+          </svg>
+        </div>
+        <div class="crnr bl">
+          <svg width="115" height="115" viewBox="0 0 115 115" fill="none">
+            <path
+              d="M4 100 Q22 75 12 45 Q32 65 54 28 Q44 60 74 46 Q58 70 86 66"
+              stroke="#d4a855"
+              stroke-width="1.5"
+              fill="none"
+              opacity=".4"
+            />
+            <path
+              d="M4 100 Q18 82 26 60"
+              stroke="#6db56d"
+              stroke-width="1.2"
+              fill="none"
+              opacity=".45"
+            />
+            <ellipse
+              cx="8"
+              cy="40"
+              rx="9"
+              ry="5"
+              fill="#6db56d"
+              opacity=".38"
+              transform="rotate(-35 8 40)"
+            />
+            <circle cx="54" cy="28" r="5.5" fill="#c8436a" opacity=".75" />
+            <ellipse
+              cx="54"
+              cy="28"
+              rx="8"
+              ry="5"
+              fill="#f4a7b9"
+              opacity=".5"
+              transform="rotate(-30 54 28)"
+            />
+            <circle cx="74" cy="46" r="4.5" fill="#e8759a" opacity=".72" />
+            <text x="78" y="28" font-size="10" opacity=".65">🌷</text>
+            <text x="8" y="58" font-size="9" opacity=".55">🍃</text>
+          </svg>
+        </div>
+        <div class="crnr br">
+          <svg width="115" height="115" viewBox="0 0 115 115" fill="none">
+            <path
+              d="M4 100 Q22 75 12 45 Q32 65 54 28 Q44 60 74 46 Q58 70 86 66"
+              stroke="#d4a855"
+              stroke-width="1.5"
+              fill="none"
+              opacity=".4"
+            />
+            <path
+              d="M4 100 Q18 82 26 60"
+              stroke="#6db56d"
+              stroke-width="1.2"
+              fill="none"
+              opacity=".45"
+            />
+            <ellipse
+              cx="8"
+              cy="40"
+              rx="9"
+              ry="5"
+              fill="#6db56d"
+              opacity=".38"
+              transform="rotate(-35 8 40)"
+            />
+            <circle cx="54" cy="28" r="5.5" fill="#e8759a" opacity=".75" />
+            <ellipse
+              cx="54"
+              cy="28"
+              rx="8"
+              ry="5"
+              fill="#c8436a"
+              opacity=".48"
+              transform="rotate(30 54 28)"
+            />
+            <circle cx="74" cy="46" r="4.5" fill="#c8436a" opacity=".72" />
+            <text x="78" y="28" font-size="10" opacity=".65">🌟</text>
+            <text x="8" y="58" font-size="9" opacity=".55">🍀</text>
+          </svg>
+        </div>
+
+        <!-- sparkle stars scattered -->
+        <span
+          class="stk"
+          style="
+            top: 37%;
+            left: 15%;
+            font-size: 0.9rem;
+            animation-duration: 1.2s;
+          "
+          >✦</span
+        >
+        <span
+          class="stk"
+          style="
+            top: 27%;
+            left: 58%;
+            font-size: 1rem;
+            animation-duration: 1.7s;
+            animation-delay: 0.3s;
+          "
+          >★</span
+        >
+        <span
+          class="stk"
+          style="
+            top: 56%;
+            right: 12%;
+            font-size: 0.85rem;
+            animation-duration: 1s;
+            animation-delay: 0.6s;
+          "
+          >✦</span
+        >
+        <span
+          class="stk"
+          style="
+            top: 64%;
+            left: 18%;
+            font-size: 0.75rem;
+            animation-duration: 1.4s;
+            animation-delay: 0.1s;
+          "
+          >⋆</span
+        >
+        <span
+          class="stk"
+          style="
+            top: 30%;
+            left: 36%;
+            font-size: 0.8rem;
+            animation-duration: 1.8s;
+            animation-delay: 0.4s;
+          "
+          >✧</span
+        >
+        <span
+          class="stk"
+          style="
+            top: 72%;
+            right: 20%;
+            font-size: 0.7rem;
+            animation-duration: 1.3s;
+            animation-delay: 0.2s;
+          "
+          >✦</span
+        >
+        <span
+          class="stk"
+          style="
+            top: 20%;
+            left: 28%;
+            font-size: 0.65rem;
+            animation-duration: 2s;
+            animation-delay: 0.5s;
+          "
+          >⭐</span
+        >
+
+        <!-- rose SVG -->
+        <svg class="p1-rose" viewBox="0 0 200 200" fill="none">
+          <path
+            d="M100 185 Q93 154 100 131"
+            stroke="#6db56d"
+            stroke-width="3.5"
+            stroke-linecap="round"
+          />
+          <path
+            d="M100 160 Q82 150 75 140"
+            stroke="#6db56d"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <ellipse
+            cx="70"
+            cy="137"
+            rx="11"
+            ry="7"
+            fill="#6db56d"
+            transform="rotate(-32 70 137)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#c8436a"
+            opacity=".78"
+            transform="rotate(0 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#e8759a"
+            opacity=".7"
+            transform="rotate(45 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#c8436a"
+            opacity=".75"
+            transform="rotate(90 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#e8759a"
+            opacity=".7"
+            transform="rotate(135 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#c8436a"
+            opacity=".78"
+            transform="rotate(180 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#e8759a"
+            opacity=".7"
+            transform="rotate(225 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#c8436a"
+            opacity=".75"
+            transform="rotate(270 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="72"
+            rx="29"
+            ry="42"
+            fill="#e8759a"
+            opacity=".7"
+            transform="rotate(315 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="80"
+            rx="21"
+            ry="29"
+            fill="#d45580"
+            opacity=".9"
+            transform="rotate(22 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="80"
+            rx="21"
+            ry="29"
+            fill="#f4a7b9"
+            opacity=".85"
+            transform="rotate(67 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="80"
+            rx="21"
+            ry="29"
+            fill="#d45580"
+            opacity=".9"
+            transform="rotate(112 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="80"
+            rx="21"
+            ry="29"
+            fill="#f4a7b9"
+            opacity=".85"
+            transform="rotate(157 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="80"
+            rx="21"
+            ry="29"
+            fill="#d45580"
+            opacity=".9"
+            transform="rotate(202 100 100)"
+          />
+          <ellipse
+            cx="100"
+            cy="80"
+            rx="21"
+            ry="29"
+            fill="#f4a7b9"
+            opacity=".85"
+            transform="rotate(247 100 100)"
+          />
+          <circle cx="100" cy="100" r="21" fill="#8b1a3a" />
+          <circle cx="100" cy="100" r="14" fill="#a82050" />
+          <circle cx="100" cy="100" r="7" fill="#c8436a" />
+          <circle cx="97" cy="97" r="3" fill="rgba(255,200,180,.45)" />
+        </svg>
+
+        <div class="p1-date">8/3</div>
+        <div class="p1-sub">Ngày Quốc Tế Phụ Nữ</div>
+
+        <div class="p1-divrow">
+          <span class="di">✦</span><span class="di">🌸</span
+          ><span class="di">✦</span>
+        </div>
+
+        <div class="p1-to">Gửi</div>
+        <div class="p1-name">Lan Anh</div>
+
+        <div class="p1-hrow">
+          <span class="ph1">💕</span><span class="ph1">🌸</span>
+          <span class="ph1">🌹</span><span class="ph1">🌺</span>
+          <span class="ph1">💗</span><span class="ph1">🌼</span>
+          <span class="ph1">🌻</span><span class="ph1">✨</span>
+          <span class="ph1">❤️‍🔥</span><span class="ph1">🌷</span>
+          <span class="ph1">❤️</span>
+        </div>
+
+        <div class="slider-wrap" id="sliderWrap">
+          <div class="slider-fill" id="sliderFill"></div>
+          <div class="slider-lbl" id="sliderLbl">
+            <span class="arr-wrap"
+              ><span class="arr">›</span><span class="arr">›</span
+              ><span class="arr">›</span></span
+            >Kéo để mở
+          </div>
+          <div class="slider-thumb" id="thumb">🌸</div>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 2 ══ -->
+      <div id="p2">
+        <div class="p2-ribbon"></div>
+        <div class="p2-wm">🌹</div>
+        <button class="p2-back" id="backBtn">←</button>
+
+        <!-- floral corners p2 -->
+        <div class="p2-crnr tl">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+            <path
+              d="M2 90 Q18 68 10 40 Q28 58 48 24 Q40 56 66 42 Q52 64 78 60"
+              stroke="#c8436a"
+              stroke-width="1.4"
+              fill="none"
+              opacity=".4"
+            />
+            <path
+              d="M2 90 Q16 74 22 55"
+              stroke="#6db56d"
+              stroke-width="1.2"
+              fill="none"
+              opacity=".48"
+            />
+            <ellipse
+              cx="6"
+              cy="36"
+              rx="8"
+              ry="4.5"
+              fill="#6db56d"
+              opacity=".38"
+              transform="rotate(-30 6 36)"
+            />
+            <ellipse
+              cx="18"
+              cy="66"
+              rx="8"
+              ry="4"
+              fill="#6db56d"
+              opacity=".35"
+              transform="rotate(18 18 66)"
+            />
+            <circle cx="48" cy="24" r="5.5" fill="#c8436a" opacity=".78" />
+            <ellipse
+              cx="48"
+              cy="24"
+              rx="8"
+              ry="5"
+              fill="#c8436a"
+              opacity=".5"
+              transform="rotate(-30 48 24)"
+            />
+            <ellipse
+              cx="48"
+              cy="24"
+              rx="8"
+              ry="5"
+              fill="#f4a7b9"
+              opacity=".45"
+              transform="rotate(30 48 24)"
+            />
+            <circle cx="66" cy="42" r="4.5" fill="#e8759a" opacity=".75" />
+            <ellipse
+              cx="66"
+              cy="42"
+              rx="7"
+              ry="4"
+              fill="#e8759a"
+              opacity=".48"
+              transform="rotate(-45 66 42)"
+            />
+            <text x="70" y="22" font-size="10" opacity=".7">✨</text>
+            <text x="4" y="50" font-size="9" opacity=".6">🌸</text>
+            <text x="32" y="88" font-size="8" opacity=".55">💛</text>
+          </svg>
+        </div>
+        <div class="p2-crnr tr">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+            <path
+              d="M2 90 Q18 68 10 40 Q28 58 48 24 Q40 56 66 42 Q52 64 78 60"
+              stroke="#c8436a"
+              stroke-width="1.4"
+              fill="none"
+              opacity=".4"
+            />
+            <path
+              d="M2 90 Q16 74 22 55"
+              stroke="#6db56d"
+              stroke-width="1.2"
+              fill="none"
+              opacity=".45"
+            />
+            <ellipse
+              cx="6"
+              cy="36"
+              rx="8"
+              ry="4.5"
+              fill="#6db56d"
+              opacity=".36"
+              transform="rotate(-30 6 36)"
+            />
+            <circle cx="48" cy="24" r="5.5" fill="#e8759a" opacity=".75" />
+            <ellipse
+              cx="48"
+              cy="24"
+              rx="8"
+              ry="5"
+              fill="#e8759a"
+              opacity=".48"
+              transform="rotate(30 48 24)"
+            />
+            <circle cx="66" cy="42" r="4.5" fill="#c8436a" opacity=".72" />
+            <text x="70" y="22" font-size="10" opacity=".68">💗</text>
+            <text x="4" y="50" font-size="9" opacity=".55">🌺</text>
+          </svg>
+        </div>
+        <div class="p2-crnr bl">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+            <path
+              d="M2 82 Q16 62 8 36 Q24 52 42 22 Q36 50 58 38"
+              stroke="#c8436a"
+              stroke-width="1.3"
+              fill="none"
+              opacity=".35"
+            />
+            <path
+              d="M2 82 Q14 66 18 50"
+              stroke="#6db56d"
+              stroke-width="1.1"
+              fill="none"
+              opacity=".42"
+            />
+            <ellipse
+              cx="5"
+              cy="32"
+              rx="7"
+              ry="4"
+              fill="#6db56d"
+              opacity=".33"
+              transform="rotate(-28 5 32)"
+            />
+            <circle cx="42" cy="22" r="5" fill="#c8436a" opacity=".7" />
+            <ellipse
+              cx="42"
+              cy="22"
+              rx="7.5"
+              ry="4.5"
+              fill="#f4a7b9"
+              opacity=".45"
+              transform="rotate(-28 42 22)"
+            />
+            <text x="60" y="20" font-size="9" opacity=".6">🌷</text>
+          </svg>
+        </div>
+        <div class="p2-crnr br">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+            <path
+              d="M2 82 Q16 62 8 36 Q24 52 42 22 Q36 50 58 38"
+              stroke="#c8436a"
+              stroke-width="1.3"
+              fill="none"
+              opacity=".35"
+            />
+            <path
+              d="M2 82 Q14 66 18 50"
+              stroke="#6db56d"
+              stroke-width="1.1"
+              fill="none"
+              opacity=".42"
+            />
+            <ellipse
+              cx="5"
+              cy="32"
+              rx="7"
+              ry="4"
+              fill="#6db56d"
+              opacity=".33"
+              transform="rotate(-28 5 32)"
+            />
+            <circle cx="42" cy="22" r="5" fill="#e8759a" opacity=".7" />
+            <ellipse
+              cx="42"
+              cy="22"
+              rx="7.5"
+              ry="4.5"
+              fill="#c8436a"
+              opacity=".45"
+              transform="rotate(28 42 22)"
+            />
+            <text x="60" y="20" font-size="9" opacity=".6">🌟</text>
+          </svg>
+        </div>
+
+        <div class="p2-body">
+          <div class="p2-hrow">
+            <span class="phr">💕</span><span class="phr">🌸</span>
+            <span class="phr">❤️</span>
+            <span class="phr">🌺</span><span class="phr">💗</span>
+            <span class="phr">🌸</span>
+            <span class="phr">💖</span><span class="phr">✨</span>
+          </div>
+          <div class="p2-to">Gửi đến bạn —</div>
+          <div class="p2-name">Lan Anh</div>
+          <div class="p2-divrow">
+            <span class="di2">✦</span><span class="di2">🌸</span
+            ><span class="di2">✦</span>
+          </div>
+          <div class="p2-msg">
+            Ngày <b>8 tháng 3</b> này, mình muốn gửi đến bạn tất cả những điều
+            yêu thương nhất. <br />🌸 Cảm ơn bạn vì đã luôn <b>tỏa sáng</b> mỗi
+            ngày, vì nụ cười ấm áp và trái tim rộng lượng luôn sẵn sàng
+            <b>yêu thương</b> mọi người. <br />🌺 Bạn thật sự <b>đặc biệt</b> —
+            đừng bao giờ quên điều đó!
+          </div>
+          <div class="p2-wish">
+            🌺 Chúc bạn mãi xinh đẹp, hạnh phúc<br />& luôn được yêu thương trọn
+            vẹn! 🌺
+          </div>
+          <div class="p2-from">— Với tất cả yêu thương ✦</div>
+        </div>
+
+        <!-- 5 CHARACTERS -->
+        <div class="p2-chars">
+          <div class="char-fig">
+            <img
+              src="char1.png"
+              alt=""
+              style="height: 118px"
+              onerror="
+                this.outerHTML = '<span class=\'char-placeholder\'>🌷</span>'
+              "
+            />
+          </div>
+          <div class="char-fig">
+            <img
+              src="char2.png"
+              alt=""
+              style="height: 128px"
+              onerror="
+                this.outerHTML = '<span class=\'char-placeholder\'>🌻</span>'
+              "
+            />
+          </div>
+          <div class="char-fig">
+            <img
+              src="char3.png"
+              alt=""
+              style="height: 138px"
+              onerror="
+                this.outerHTML = '<span class=\'char-placeholder\'>💝</span>'
+              "
+            />
+          </div>
+          <div class="char-fig">
+            <img
+              src="char4.png"
+              alt=""
+              style="height: 122px"
+              onerror="
+                this.outerHTML = '<span class=\'char-placeholder\'>🪻</span>'
+              "
+            />
+          </div>
+          <div class="char-fig">
+            <img
+              src="char5.png"
+              alt=""
+              style="height: 115px"
+              onerror="
+                this.outerHTML = '<span class=\'char-placeholder\'>🌹</span>'
+              "
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      /* ── CANVAS PARTICLES ── */
+      const cv = document.getElementById("bg"),
+        cx = cv.getContext("2d");
+      let W,
+        H,
+        pts = [];
+      function rsz() {
+        W = cv.width = innerWidth;
+        H = cv.height = innerHeight;
+      }
+      rsz();
+      addEventListener("resize", rsz);
+      function Pt() {
+        this.reset = function () {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H;
+          this.r = Math.random() * 2.2 + 0.4;
+          this.a = Math.random() * Math.PI * 2;
+          this.sp = Math.random() * 0.3 + 0.07;
+          this.op = Math.random() * 0.38 + 0.07;
+          this.c = [
+            "#c8436a",
+            "#d4a855",
+            "#f4a7b9",
+            "#fff",
+            "#e8759a",
+            "#ffb3c6",
+            "#ffe066",
+          ][~~(Math.random() * 7)];
+        };
+        this.reset();
+        this.y = Math.random() * H;
+        this.upd = function () {
+          this.y -= this.sp;
+          this.x += Math.sin(this.a) * 0.4;
+          this.a += 0.011;
+          if (this.y < -8) {
+            this.reset();
+            this.y = H + 8;
+          }
+        };
+        this.drw = function () {
+          cx.save();
+          cx.globalAlpha = this.op;
+          cx.fillStyle = this.c;
+          cx.shadowBlur = 7;
+          cx.shadowColor = this.c;
+          cx.beginPath();
+          cx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          cx.fill();
+          cx.restore();
+        };
+      }
+      for (let i = 0; i < 110; i++) {
+        const p = new Pt();
+        pts.push(p);
+      }
+      (function loop() {
+        cx.clearRect(0, 0, W, H);
+        pts.forEach((p) => {
+          p.upd();
+          p.drw();
+        });
+        requestAnimationFrame(loop);
+      })();
+
+      /* ── FALLING DROPS ── */
+      const petalColors = [
+        "#f9c6d0",
+        "#f7a8b8",
+        "#e8759a",
+        "#f4a7b9",
+        "#ffb3c6",
+        "#ffd6e6",
+        "#ffe0ec",
+      ];
+      const dropEmojis = [
+        "💕",
+        "❤️",
+        "💗",
+        "💖",
+        "💝",
+        "🩷",
+        "🌸",
+        "🌺",
+        "🌼",
+        "✨",
+        "⭐",
+        "🌟",
+        "✦",
+        "💛",
+        "🌷",
+        "💮",
+        "🏵️",
+      ];
+      // petals
+      for (let i = 0; i < 24; i++) {
+        const el = document.createElement("div");
+        el.className = "drop";
+        const s = Math.random() * 13 + 5;
+        el.style.cssText = `left:${Math.random() * 100}vw;width:${s}px;height:${s * 0.7}px;
+    background:${petalColors[~~(Math.random() * petalColors.length)]};
+    animation-duration:${Math.random() * 7 + 7}s;animation-delay:${Math.random() * 12}s;
+    border-radius:${50 + Math.random() * 30}% ${Math.random() * 25}% ${45 + Math.random() * 20}% ${Math.random() * 20}%;`;
+        document.body.appendChild(el);
+      }
+      // emoji drops
+      for (let i = 0; i < 35; i++) {
+        const el = document.createElement("span");
+        el.className = "drop";
+        el.textContent = dropEmojis[~~(Math.random() * dropEmojis.length)];
+        el.style.cssText = `left:${Math.random() * 100}vw;font-size:${Math.random() * 14 + 7}px;
+    animation-duration:${Math.random() * 9 + 6}s;animation-delay:${Math.random() * 14}s;`;
+        document.body.appendChild(el);
+      }
+
+      /* ── FLOATING HEARTS P1 ── */
+      const p1el = document.getElementById("p1");
+      const hlist = [
+        "💕",
+        "❤️",
+        "💗",
+        "💖",
+        "🌸",
+        "✨",
+        "⭐",
+        "🌺",
+        "💛",
+        "🩷",
+        "🌟",
+        "✦",
+        "🌷",
+      ];
+      function spawnP1H() {
+        if (p1el.classList.contains("gone")) return;
+        const f = document.createElement("span");
+        f.className = "fh";
+        f.textContent = hlist[~~(Math.random() * hlist.length)];
+        f.style.cssText = `left:${Math.random() * 78 + 10}%;bottom:${Math.random() * 38 + 18}%;font-size:${Math.random() * 13 + 8}px;animation-duration:${Math.random() * 2.2 + 1.8}s;`;
+        p1el.appendChild(f);
+        setTimeout(() => f.remove(), 4800);
+      }
+      setInterval(spawnP1H, 380);
+
+      /* ── FLOATING HEARTS P2 ── */
+      const p2el = document.getElementById("p2");
+      const hlist2 = [
+        "💕",
+        "❤️",
+        "💗",
+        "💖",
+        "🌸",
+        "✨",
+        "🌺",
+        "🌼",
+        "💛",
+        "🩷",
+        "🌟",
+        "✦",
+        "🌷",
+        "💮",
+        "⭐",
+        "🏵️",
+      ];
+      let p2int = null;
+      function spawnP2H() {
+        const f = document.createElement("span");
+        f.className = "fh2";
+        f.textContent = hlist2[~~(Math.random() * hlist2.length)];
+        f.style.cssText = `left:${Math.random() * 82 + 6}%;bottom:${~~(Math.random() * 25 + 145)}px;font-size:${Math.random() * 14 + 8}px;animation-duration:${Math.random() * 2.2 + 2.2}s;`;
+        p2el.appendChild(f);
+        setTimeout(() => f.remove(), 5200);
+      }
+      function startP2H() {
+        if (p2int) return;
+        p2int = setInterval(() => {
+          if (!p2el.classList.contains("enter")) {
+            clearInterval(p2int);
+            p2int = null;
+            return;
+          }
+          spawnP2H();
+        }, 350);
+      }
+
+      /* ── SLIDER ── */
+      const thumb = document.getElementById("thumb"),
+        fill = document.getElementById("sliderFill"),
+        lbl = document.getElementById("sliderLbl");
+      const TRACK = 240,
+        TS = 52,
+        MAX = TRACK - TS - 8;
+      let drag = false,
+        sx = 0,
+        sl = 0;
+      const gl = () => parseInt(thumb.style.left) || 4;
+      function setPos(p) {
+        p = Math.max(4, Math.min(p, MAX + 4));
+        thumb.style.left = p + "px";
+        fill.style.width = p + TS / 2 + "px";
+        lbl.style.opacity = Math.max(0, 1 - ((p - 4) / MAX) * 1.5);
+        if (p >= MAX + 2) complete();
+      }
+      function complete() {
+        thumb.classList.add("snap");
+        lbl.style.opacity = 0;
+        setTimeout(() => {
+          openCard();
+          thumb.classList.remove("snap");
+          thumb.style.left = "4px";
+          fill.style.width = "52px";
+          lbl.style.opacity = 1;
+        }, 360);
+      }
+      thumb.addEventListener("mousedown", (e) => {
+        drag = true;
+        sx = e.clientX;
+        sl = gl();
+        e.preventDefault();
+      });
+      thumb.addEventListener(
+        "touchstart",
+        (e) => {
+          drag = true;
+          sx = e.touches[0].clientX;
+          sl = gl();
+          e.preventDefault();
+        },
+        { passive: false },
+      );
+      document.addEventListener("mousemove", (e) => {
+        if (drag) setPos(sl + (e.clientX - sx));
+      });
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          if (drag) {
+            setPos(sl + (e.touches[0].clientX - sx));
+            e.preventDefault();
+          }
+        },
+        { passive: false },
+      );
+      document.addEventListener("mouseup", () => {
+        if (drag) {
+          drag = false;
+          if (gl() < MAX + 2) setPos(4);
+        }
+      });
+      document.addEventListener("touchend", () => {
+        if (drag) {
+          drag = false;
+          if (gl() < MAX + 2) setPos(4);
+        }
+      });
+
+      /* ── OPEN / BACK ── */
+      function openCard() {
+        p1el.classList.add("gone");
+        setTimeout(() => {
+          p2el.classList.add("enter");
+          startP2H();
+        }, 80);
+        burst();
+      }
+      document.getElementById("backBtn").addEventListener("click", () => {
+        p2el.classList.remove("enter");
+        setTimeout(() => p1el.classList.remove("gone"), 80);
+      });
+
+      /* ── BURST ── */
+      function burst() {
+        const cols = [
+          "#d4a855",
+          "#f4a7b9",
+          "#e8759a",
+          "#fff",
+          "#ffb3c6",
+          "#c8436a",
+        ];
+        const emj = ["💕", "🌸", "✨", "❤️", "🌺", "⭐", "💗", "🌟"];
+        for (let i = 0; i < 28; i++) {
+          const s = document.createElement("span");
+          if (Math.random() > 0.45) {
+            s.textContent = emj[~~(Math.random() * emj.length)];
+            s.style.cssText = `position:fixed;font-size:${Math.random() * 18 + 10}px;left:50%;top:50%;pointer-events:none;z-index:99;opacity:1;transition:transform ${Math.random() * 0.7 + 0.4}s ease-out,opacity .55s ease-out;`;
+          } else {
+            s.style.cssText = `position:fixed;border-radius:50%;width:${Math.random() * 10 + 4}px;height:${Math.random() * 10 + 4}px;background:${cols[~~(Math.random() * cols.length)]};left:50%;top:50%;pointer-events:none;z-index:99;opacity:1;transition:transform ${Math.random() * 0.65 + 0.4}s ease-out,opacity .55s ease-out;`;
+          }
+          document.body.appendChild(s);
+          setTimeout(() => {
+            const a = Math.random() * Math.PI * 2,
+              d = Math.random() * 240 + 80;
+            s.style.transform = `translate(${Math.cos(a) * d}px,${Math.sin(a) * d}px) scale(0) rotate(${Math.random() * 360}deg)`;
+            s.style.opacity = "0";
+          }, 20);
+          setTimeout(() => s.remove(), 1300);
+        }
+      }
+    </script>
+  </body>
+</html>
